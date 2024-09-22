@@ -1,5 +1,5 @@
 # About the project
-Bunny is a simple multiparadigm programming language focused on avoiding long and hard-to-read syntax.
+Bunny is a simple multiparadigm programming language focused on avoiding verbose and hard-to-read syntax.
 ## Basic principles
 - Tokens do not include white spaces.
 - All tokens are prefixed by at least 1st order keyword.
