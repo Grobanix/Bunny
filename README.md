@@ -21,7 +21,7 @@ Function calls are formatted as first lines of function definitions.
 ## Example code
 ```
 @MAIN
-@FUNCION #14
+@FUNCTION #14
 
 @FUNCTION $INPUT
 $VAR %~= #12
