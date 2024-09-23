@@ -29,7 +29,7 @@ Bunny is a simple multiparadigm programming language focused on avoiding verbose
 ## Implicit operators
 Following operators can be omitted:
 - assignment operator after variable in the beginning of a line
-- multiplication operator between variables and numeric values that are not in the beginning of a line
+- multiplication operator between variables and numeric values that are not in the beginning of a line and are not inputs of function
 ## Example code
 Explicit
 ```
