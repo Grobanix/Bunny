@@ -6,7 +6,7 @@
 short Order{0};
 int Statements{-1};
 int Tokens{-1};
-int Block{0};
+int Blocks{0};
 
 enum TokenType {
 	None ,Number, String, Variable, Operator, Function, Condition , Standard
@@ -67,24 +67,33 @@ void Parse(std::string& Line, std::vector<Token>& Statement) {
 
 int main(int argc, char* argv[]) {
 	
-	std::vector<std::vector<Token>> Code;
+	std::vector<std::vector<std::vector<Token>>> Code;
+	{
+	std::vector<std::vector<Token>> block;
+	Code.push_back(block);
+	}
 	std::string FileName(argv[1]);
 	std::cout << FileName << '\n';
 	
 	FileManager fm(FileName);
 	std::string Line;
 	while (getline(fm.File, Line)) {
+		if (Line == "")
+		{ ++Blocks; Statements = -1; std::vector<std::vector<Token>> block; Code.push_back(block); }
 		++Statements;
 		std::vector<Token> Statement;
-		Code.push_back(Statement);
-		Parse(Line, Code.at(Statements));
+		Code.at(Blocks).push_back(Statement);
+		Parse(Line, Code.at(Blocks).at(Statements));
 		Order = 0;
 		Tokens = -1;
 	}
 	
-	for (std::vector<Token> statement : Code) {
-		for (Token token : statement)
-		{ std::cout << token.stType << token.ndType << token.rdType << token.Content; }
+	for (std::vector<std::vector<Token>> block : Code) {
+		for (std::vector<Token> statement : block) {
+			for (Token token : statement)
+			{ std::cout << token.stType << token.ndType << token.rdType << token.Content; }
+		std::cout << '\t';
+		}
 		std::cout << std::endl;
 	}
 	std::cout << std::endl;
